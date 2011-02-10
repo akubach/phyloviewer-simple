@@ -8,7 +8,7 @@
   <!-- Servlets -->
   <servlet>
     <servlet-name>parseFileService</servlet-name>
-    <servlet-class>org.iplantc.recon.server.ParseFileService</servlet-class>
+    <servlet-class>org.iplantc.simple.server.ParseFileService</servlet-class>
   </servlet>
   
   <servlet-mapping>
@@ -18,7 +18,7 @@
   
   <servlet>
     <servlet-name>layoutService</servlet-name>
-    <servlet-class>org.iplantc.recon.server.LayoutService</servlet-class>
+    <servlet-class>org.iplantc.simple.server.LayoutService</servlet-class>
   </servlet>
   
   <servlet-mapping>
