@@ -1,4 +1,4 @@
-package org.iplantc.recon.server;
+package org.iplantc.simple.server;
 
 import java.io.BufferedReader;
 import java.io.IOException;

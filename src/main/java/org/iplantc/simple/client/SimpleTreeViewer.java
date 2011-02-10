@@ -1,4 +1,4 @@
-package org.iplantc.recon.client;
+package org.iplantc.simple.client;
 
 import org.iplantc.core.broadcaster.shared.BroadcastCommand;
 import org.iplantc.phyloviewer.client.tree.viewer.DetailView;
@@ -29,7 +29,7 @@ import com.google.gwt.user.client.ui.RootPanel;
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
  */
-public class ReconViz implements EntryPoint
+public class SimpleTreeViewer implements EntryPoint
 {
 	class MyTreeWidget extends ContentPanel
 	{

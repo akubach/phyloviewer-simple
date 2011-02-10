@@ -1,4 +1,4 @@
-package org.iplantc.recon.server;
+package org.iplantc.simple.server;
 
 import java.io.IOException;
 import java.io.InputStreamReader;

@@ -2,11 +2,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.iplantc.recon</groupId>
-	<artifactId>ReconViz</artifactId>
+	<groupId>org.iplantc.phyloviewer.simple</groupId>
+	<artifactId>SimpleTreeViewer</artifactId>
 	<packaging>war</packaging>
 	<version>dev-SNAPSHOT</version>
-	<name>Tree Reconciliation Viewer</name>
+	<name>Simple tree viewer</name>
 	<url>http://iplantcollaborative.org</url>
 	<!--  convenience to define GWT version in one place -->
 	<properties>
@@ -88,7 +88,7 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<finalName>ReconViz</finalName>
+		<finalName>SimpleTreeViewer</finalName>
 		<outputDirectory>${basedir}/war/WEB-INF/classes</outputDirectory>
 		<plugins>
 			<plugin>
@@ -142,17 +142,6 @@
 				</configuration>
 			</plugin>
 		</plugins>
-		<resources>
-			<resource>
-				<directory>src/main/java</directory>
-				<includes>
-					<include>**/client/**</include>
-					<include>**/server/**</include>
-					<!-- only include the GWT Module definition -->
-					<include>**/Phyloviewer.gwt.xml</include>
-				</includes>
-			</resource>
-		</resources>
 	</build>
 	<reporting>
 		<plugins>
