@@ -18,7 +18,7 @@ public class SimpleTreeViewer implements EntryPoint
 	 */
 	public void onModuleLoad()
 	{
-		TreePanel treeWidget = new TreePanel();
+		TreePanel treeWidget = new AutoCollapseTreePanel();
 		
 		final TextArea textArea = new TextArea();
 		textArea.setSize(800, 300);

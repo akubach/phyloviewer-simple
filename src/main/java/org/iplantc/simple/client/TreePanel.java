@@ -7,7 +7,6 @@ import org.iplantc.phyloviewer.shared.model.IDocument;
 import org.iplantc.phyloviewer.shared.render.style.IStyleMap;
 
 import com.extjs.gxt.ui.client.Style.HorizontalAlignment;
-import com.extjs.gxt.ui.client.Style.Scroll;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.Events;
 import com.extjs.gxt.ui.client.event.FormEvent;
@@ -24,20 +23,12 @@ import com.extjs.gxt.ui.client.widget.form.TextArea;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.google.gwt.core.client.JsonUtils;
 
-class TreePanel extends ContentPanel
+public abstract class TreePanel extends ContentPanel
 {
-	DetailView view;
-
 	TreePanel()
 	{
 		setStyleAttribute("margin", "5px");
-		setScrollMode(Scroll.AUTO);
 		setHeading("Tree view");
-
-		view = new DetailView(800, 600);
-		view.setDefaults();
-		this.add(view);
-		this.setSize("800", "400");
 
 		setTopComponent(buildToolbar());
 	}
@@ -50,7 +41,11 @@ class TreePanel extends ContentPanel
 			@Override
 			public void componentSelected(ButtonEvent ce)
 			{
-				view.zoomToFit();
+				DetailView view = getView();
+				if(view != null)
+				{
+					view.zoomToFit();
+				}
 			}
 		});
 
@@ -77,13 +72,18 @@ class TreePanel extends ContentPanel
 					@Override
 					public void componentSelected(ButtonEvent ce)
 					{
-						IDocument document = view.getDocument();
-						if(document != null)
+						DetailView view = getView();
+						if(view != null)
 						{
-							String json = textArea.getValue();
-							IStyleMap styleMap = getStyleMap(json);
-							document.setStyleMap(styleMap);
-							view.requestRender();
+							IDocument document = view.getDocument();
+							if(document != null)
+							{
+								String json = textArea.getValue();
+								IStyleMap styleMap = getStyleMap(json);
+								document.setStyleMap(styleMap);
+								view.setDocument(document);
+								view.requestRender();
+							}
 						}
 
 						dialog.hide();
@@ -195,10 +195,12 @@ class TreePanel extends ContentPanel
 		document.setStyleMap(doc.getStyleMap());
 		document.setLayout(doc.getLayout());
 
-		view.setDocument(document);
-		view.requestRender();
-
-		view.lockToMaximumZoom();
+		DetailView view = getView();
+		if(view != null)
+		{
+			view.setDocument(document);
+			view.requestRender();
+		}
 	}
 
 	private final static native JsDocument getDocument(String json) /*-{
@@ -210,8 +212,5 @@ class TreePanel extends ContentPanel
 		return (IStyleMap)JsonUtils.safeEval(json);
 	}
 
-	public DetailView getView()
-	{
-		return view;
-	}
+	public abstract DetailView getView();
 }
